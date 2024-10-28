@@ -1,0 +1,30 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "a task manager project with expressJS.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bahinkor/task-manager-backend.git"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "experss",
+    "backend",
+    "mongodb",
+    "api",
+    "task-manager"
+  ],
+  "author": "github.com/bahinkor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bahinkor/task-manager-backend/issues"
+  },
+  "homepage": "https://github.com/Bahinkor/task-manager-backend#readme"
+}
