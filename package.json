@@ -29,11 +29,13 @@
   },
   "homepage": "https://github.com/Bahinkor/task-manager-backend#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "fastest-validator": "^1.19.0",
     "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3"
   }
 }
