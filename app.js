@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const authRouter = require("./modules/auth/auth.router");
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 app.use(helmet());
 
+app.use("/api/v1/auth", authRouter);
 
 // not fount error handler
 app.use((req, res) => {

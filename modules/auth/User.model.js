@@ -4,12 +4,17 @@ const schema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        minlength: 2,
+        minLength: 2,
     },
     lastName: {
         type: String,
         required: true,
-        minlength: 2,
+        minLength: 2,
+    },
+    jobTitle: {
+        type: String,
+        required: true,
+        minLength: 2,
     },
     email: {
         type: String,
