@@ -15,7 +15,7 @@ app.use("/api/v1/auth", authRouter);
 // not fount error handler
 app.use((req, res) => {
     return res.status(404).json({
-        message: "Not Found",
+        message: "API Route Not Found",
     });
 });
 
