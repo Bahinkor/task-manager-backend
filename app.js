@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const authRouter = require("./modules/auth/auth.router");
+const banUserRouter = require("./modules/banUser/banUser.router");
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user/ban", banUserRouter);
 
 // not fount error handler
 app.use((req, res) => {
