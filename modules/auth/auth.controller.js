@@ -87,15 +87,12 @@ exports.login = async (req, res) => {
 
 exports.getMe = async (req, res) => {
     try {
-        const {token} = req.headers;
-        const {email} = jwt.verify(token, process.env.JWT_SECRET);
-
-        const user = await userModel.findOne({email}, "-password -__v").lean();
-        if (!user) return res.status(404).json({message: "user not found"});
+        const {user} = req;
 
         return res.json({...user});
 
     } catch (err) {
+        console.log(`auth controller, get me error: ${err}`);
         return res.status(500).json({
             message: err.message,
         });
