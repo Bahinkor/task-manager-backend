@@ -1,9 +1,12 @@
 const express = require("express");
-const {isValidObjectId} = require("mongoose");
-const banUserModel = require("./BanUser.model");
 const banUserController = require("./banUser.controller");
+const authMiddleware = require("./../../middlewares/auth.middleware");
+const isAdminMiddleware = require("./../../middlewares/isAdmin.middleware");
 
 const banUserRouter = express.Router();
+
+banUserRouter.use(authMiddleware);
+banUserRouter.use(isAdminMiddleware);
 
 banUserRouter.route("/")
     .get(banUserController.getAll)
