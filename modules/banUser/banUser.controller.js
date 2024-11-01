@@ -47,4 +47,23 @@ exports.banUser = async (req, res) => {
 };
 
 exports.remove = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const isValidObjectID = isValidObjectId(id);
+        if (!isValidObjectID) return res.status(422).json({message: "id is not valid."});
+
+        const user = await banUserModel.findOneAndDelete({user: id});
+        if (!user) return res.status(404).json({message: "user not found."});
+
+        res.json({
+            message: "user removed from ban list successfully.",
+        });
+
+    } catch (err) {
+        console.log(`ban user controller, get all error: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
 };
