@@ -19,12 +19,12 @@ exports.getAll = async (req, res) => {
 
 exports.banUser = async (req, res) => {
     try {
-        const {banUser} = req.body;
+        const {id} = req.params;
 
-        const isValidObjectID = isValidObjectId(banUser);
+        const isValidObjectID = isValidObjectId(id);
         if (!isValidObjectID) return res.status(422).json({message: "id is not valid."});
 
-        const user = await userModel.findOne({_id: banUser});
+        const user = await userModel.findOne({_id: id});
         if (!user) return res.status(404).json({message: "user not found."});
 
         const isUserAdmin = user.role === "ADMIN";

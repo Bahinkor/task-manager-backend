@@ -9,7 +9,9 @@ banUserRouter.use(authMiddleware);
 banUserRouter.use(isAdminMiddleware);
 
 banUserRouter.route("/")
-    .get(banUserController.getAll)
+    .get(banUserController.getAll);
+
+banUserRouter.route("/:id")
     .post(banUserController.banUser)
     .delete(banUserController.remove);
 
