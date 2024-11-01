@@ -12,7 +12,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/user/ban", banUserRouter);
+app.use("/api/v1/ban/user", banUserRouter);
 
 // not fount error handler
 app.use((req, res) => {
