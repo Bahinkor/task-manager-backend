@@ -2,7 +2,6 @@ const {isValidObjectId} = require("mongoose");
 const taskModel = require("./Task.model");
 const userModel = require("./../auth/User.model");
 const taskValidator = require("./task.validator");
-const {populate} = require("dotenv");
 
 exports.create = async (req, res) => {
     try {
@@ -62,6 +61,27 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getOne = async (req, res) => {
+    try {
+        const {taskID} = req.params;
+
+        const isValidID = isValidObjectId(taskID);
+        if (!isValidID) return res.status(422).json({message: "taskID is not valid."});
+
+        const task = await taskModel.findOne({
+            _id: taskID,
+        }).populate("undertaking", "-password -__v").populate("manager", "-password -__v").lean();
+        if (!task) return res.status(404).json({message: "task not found."});
+
+        if (req.user.role !== "ADMIN" && req.user._id !== task.undertaking) return res.status(403).json({message: "You do not have the required access."});
+
+        res.json(...task);
+
+    } catch (err) {
+        console.log(`task controller, get one err: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
 };
 
 exports.update = async (req, res) => {
