@@ -2,6 +2,7 @@ const {isValidObjectId} = require("mongoose");
 const taskModel = require("./Task.model");
 const userModel = require("./../auth/User.model");
 const taskValidator = require("./task.validator");
+const {populate} = require("dotenv");
 
 exports.create = async (req, res) => {
     try {
@@ -39,6 +40,18 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
+    try {
+        const tasks = await taskModel.find({})
+            .populate("undertaking", "-password -__v").populate("manager", "-password -__v").lean();
+
+        res.json(tasks);
+
+    } catch (err) {
+        console.log(`task controller, get all err: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
 };
 
 exports.getOne = async (req, res) => {
