@@ -7,10 +7,16 @@ const schema = {
         type: "string",
     },
     text: {
-        type: String,
+        type: "string",
         min: 3,
         max: 9000,
-    }
+    },
+    dueDate: {
+        type: "date",
+    },
+    deadLine: {
+        type: "date",
+    },
 };
 
 const check = v.compile(schema);

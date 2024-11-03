@@ -22,6 +22,14 @@ const schema = new mongoose.Schema({
         maxLength: 9000,
         required: true,
     },
+    dueDate: {
+        type: Date,
+        required: true,
+    },
+    deadLine: {
+        type: Date,
+        required: true,
+    },
     attach: {
         type: String,
         required: true,

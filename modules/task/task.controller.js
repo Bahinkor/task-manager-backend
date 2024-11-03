@@ -9,7 +9,12 @@ exports.create = async (req, res) => {
         const validationResult = taskValidator(req.body);
         if (validationResult !== true) return res.status(422).json(validationResult);
 
-        const {undertaking, text} = req.body;
+        const {
+            undertaking,
+            text,
+            dueDate,
+            deadLine,
+        } = req.body;
 
         const isValidID = isValidObjectId(undertaking);
         if (!isValidID) return res.status(422).json({message: "undertaking is not valid"});
@@ -24,6 +29,8 @@ exports.create = async (req, res) => {
             manager: req.user._id,
             status: "waiting",
             text,
+            dueDate,
+            deadLine,
             attach: req.file.filename,
         });
 
