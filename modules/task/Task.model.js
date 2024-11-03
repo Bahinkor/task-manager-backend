@@ -22,7 +22,7 @@ const schema = new mongoose.Schema({
         maxLength: 9000,
         required: true,
     },
-    Attach: {
+    attach: {
         type: String,
         required: true,
     },
