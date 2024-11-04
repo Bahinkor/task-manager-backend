@@ -85,6 +85,50 @@ exports.getOne = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
+    try {
+        const {taskID} = req.params;
+
+        const isValidTaskID = isValidObjectId(taskID);
+        if (!isValidTaskID) return res.status(422).json({message: "taskID is not valid."});
+
+        const validationResult = taskValidator(req.body);
+        if (validationResult !== true) return res.status(422).json(validationResult);
+
+        const {
+            undertaking,
+            text,
+            dueDate,
+            deadLine,
+            status,
+        } = req.body;
+
+        const isValidID = isValidObjectId(undertaking);
+        if (!isValidID) return res.status(422).json({message: "undertaking is not valid"});
+
+        const undertakingUser = await userModel.findOne({
+            _id: undertaking,
+        });
+        if (!undertakingUser) return res.status(404).json({message: "undertaking not found"});
+
+        const updatedTask = await taskModel.updateOne({_id: taskID}, {
+            undertaking,
+            text,
+            dueDate,
+            deadLine,
+            status,
+        });
+        if (!updatedTask) return res.status(404).json({message: "task not found."});
+
+        res.json({
+            message: "task updated successfully.",
+        });
+
+    } catch (err) {
+        console.log(`task controller, update err: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
 };
 
 exports.remove = async (req, res) => {
