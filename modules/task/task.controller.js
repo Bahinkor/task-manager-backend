@@ -116,6 +116,7 @@ exports.update = async (req, res) => {
             dueDate,
             deadLine,
             status,
+            attach: req.file.filename,
         });
         if (!updatedTask) return res.status(404).json({message: "task not found."});
 
