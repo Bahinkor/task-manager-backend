@@ -132,4 +132,25 @@ exports.update = async (req, res) => {
 };
 
 exports.remove = async (req, res) => {
+    try {
+        const {taskID} = req.params;
+
+        const isValidTaskID = isValidObjectId(taskID);
+        if (!isValidTaskID) return res.status(422).json({message: "taskID is not valid."});
+
+        const removedTask = await taskModel.findOneAndDelete({
+            _id: taskID,
+        });
+        if (!removedTask) return res.status(404).json({message: "task not found."});
+
+        res.json({
+            message: "task removed successfully.",
+        });
+
+    } catch (err) {
+        console.log(`task controller, remove err: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
 };
