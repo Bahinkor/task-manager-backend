@@ -17,4 +17,7 @@ taskRouter.route("/:taskID")
     .put(isAdminMiddleware, attachUploader.single("attach"), taskController.update)
     .delete(isAdminMiddleware, taskController.remove);
 
+taskRouter.route("status/:taskID")
+    .put(taskController.editStatus);
+
 module.exports = taskRouter;

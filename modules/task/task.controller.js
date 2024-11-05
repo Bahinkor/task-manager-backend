@@ -155,3 +155,35 @@ exports.remove = async (req, res) => {
         });
     }
 };
+
+exports.editStatus = async (req, res) => {
+    try {
+        const {taskID} = req.params;
+        const {status} = req.body;
+
+        const allowedStatuses = ["waiting", "accepted", "rejected", "canceled", "done"];
+        const validationResult = allowedStatuses.includes(status);
+        if (!validationResult) return res.status(422).json({
+            message: "status is not valid.",
+            allowedStatuses,
+        });
+
+        const task = await taskModel.findOneAndUpdate({
+            _id: taskID,
+            undertaking: req.user._id,
+        }, {
+            status,
+        });
+        if (!task) return res.status(404).json({message: "task not found."});
+
+        res.json({
+            message: "status updated successfully.",
+        });
+
+    } catch (err) {
+        console.log(`task controller, edit status err: ${err}`);
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
+};
