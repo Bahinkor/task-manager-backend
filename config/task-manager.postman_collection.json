@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "d61ce21f-4df3-4865-b90f-2f89791fb8b4",
+		"name": "task-manager",
+		"description": "task manager api doc.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34422214"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Reza\",\r\n    \"lastName\": \"Bahinkor\",\r\n    \"jobTitle\": \"SEO\",\r\n    \"email\": \"\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{beasURL}}/api/v1/auth/register",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{beasURL}}/api/v1/auth/login",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/auth/me",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ban-user",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1//ban/user",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"",
+								"ban",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ban",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/ban/user/:id",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ban",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove ",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/ban/user/:id",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ban",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "undertaking",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "dueDate",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadLine",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "attach",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-one",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/:taskID",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/:taskID",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "undertaking",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "dueDate",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadLine",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "attach",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/:taskID",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "status-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "access token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{beasURL}}/api/v1/task/status/:taskID",
+							"host": [
+								"{{beasURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"task",
+								"status",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
