@@ -7,7 +7,7 @@ exports.getAll = async (req, res) => {
         const bannedUsers = await banUserModel.find({})
             .populate("user", "-password -__v").lean();
 
-        res.json({...bannedUsers});
+        res.json(bannedUsers);
 
     } catch (err) {
         console.log(`ban user controller, get all error: ${err}`);
